@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 50px 150px 50px 150px;
+    justify-content: center;
+  }
+  
+
+.header {
+    display: flex;
+    align-items: center;
+}
+.banner {
+    width: 1100px;
+    height: 400px;
+    object-fit: none;
+    object-position: bottom;
+    border-radius: 25px;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.card{
+    width: 530px;
+    height: 420px;
+    margin-top: 20px;
+    background-color: #E9EAEC;
+    border-radius: 25px;
+}
+.code{
+    background-color: black;
+    color: white;
+    /* padding: 12px; */
+    padding: 2px 20px 20px 20px;
+    border-radius: 0 0 20px 20px;
+}
+p{
+    font-size: 20px;
+    line-height: 2rem;
+    padding: 0 20px 0 20px;
+}
+h2{
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 0 20px 0 20px;
+}
