@@ -1,0 +1,14 @@
+
+.book-table th, .book-table td{
+    border: 1px solid black;
+    padding: 8px;
+}
+.top{
+    text-align: left;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+}
+tbody{
+    background-color: lavender;
+}

@@ -10,6 +10,10 @@ async function getBooks() {
   .from('books')
   .select('*')
 
+  if (error){
+    console.log(error)
+    return
+  }
   for (let book of books){
     let bookList = document.getElementById('books');
     bookList.innerHTML += `
@@ -17,6 +21,7 @@ async function getBooks() {
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.ISBN}</td>
+        <td>${book.description}</td>
       </tr>
     `;
   }
