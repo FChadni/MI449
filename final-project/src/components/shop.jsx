@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Product from "./product";
 
 const shop = () => {
   return (
-    <div>
-      Shop
+    <div className="w-full h-auto flex flex-col items-center">
+      <Product/>
     </div>
   )
 }

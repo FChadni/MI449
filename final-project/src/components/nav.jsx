@@ -34,6 +34,15 @@ const Nav = () => {
     }
   }
 
+  const logout = () => {
+    setIsPopup(false);
+    localStorage.clear();
+    dispatch({
+      type : actionType.SET_USER,
+      user : null,
+    });
+  };
+
   return (
     <header className="flex items-center justify-between flex-wrap bg-white p-6 px-50 mx-24 border-b border-gray-300">
     {/* Desktop navigation */}
@@ -83,10 +92,18 @@ const Nav = () => {
                 className="w-40 bg-gray-100 shadow-xl rounded-xl flex flex-col absolute top-12 -right-4">
                 { user && user.email === "hopestella5@gmail.com" && (
                   <Link to={'/admin'}>
-                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out">New Item <BsPlus/></p>
+                    <p 
+                      className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out"
+                      onClick={ () => setIsPopup(false) } >
+                      New Item <BsPlus/>
+                    </p>
                   </Link>
                 )}
-                <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out">Logout <MdLogout/></p>
+                <p 
+                className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out"
+                onClick={logout}>
+                  Logout <MdLogout/>
+                </p>
               </motion.div>
             )
           }
