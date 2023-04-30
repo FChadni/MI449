@@ -52,19 +52,19 @@ const Nav = () => {
 
       <ul className="flex justify-center items-center gap-4">
         <li className="text-lg lg:flex-grow">
-            <a href="#shop" className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
+            <Link to={"/"} className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
                 Shop
-            </a>
+            </Link>
         </li>
         <li className="text-lg lg:flex-grow">
-            <a href="#shop" className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
+            <Link to={"/"} className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
                 Our Story
-            </a>
+            </Link>
         </li>
         <li className="text-lg lg:flex-grow">
-            <a href="#shop" className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
+            <Link to={"/"} className="block mt-4 lg:inline-block lg:mt-0 text-gray-800 hover:text-gray-500 mr-4">
                 Element in 3D
-            </a>
+            </Link>
         </li>
       </ul>
 
@@ -72,12 +72,12 @@ const Nav = () => {
         <a href="#search" className="block mr-7 text-gray-800 hover:text-gray-500">
             <BsSearch className="text-3xl"/>
         </a>
-        <a href="#search" className=" relative block mr-7 text-gray-800 hover:text-gray-500">
+        <Link to={"/cart"} className=" relative block mr-7 text-gray-800 hover:text-gray-500">
             <FaShoppingCart className="text-3xl"/>
             <div className=" absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
               <p className="text-sm text-white font-semibold">2</p>
             </div>
-        </a>
+        </Link>
         <div className="relative">
           <motion.img whileTap={{scale: 0.6}} 
             src={ user ? user.photoURL : logo } 
@@ -109,8 +109,6 @@ const Nav = () => {
           }
         </div>
       </div>
-
-      {/* Mobile navigation */}
     </header>
 
   )
