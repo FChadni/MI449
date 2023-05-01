@@ -18,7 +18,7 @@ const Nav = () => {
   // Login function - this is fetching user information (redux)
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const [ {user}, dispatch ] = useStateValue();
+  const [ {user, cartItems}, dispatch ] = useStateValue();
 
   const login = async () => {
     if(!user){
@@ -74,9 +74,11 @@ const Nav = () => {
         </a>
         <Link to={"/cart"} className=" relative block mr-7 text-gray-800 hover:text-gray-500">
             <FaShoppingCart className="text-3xl"/>
-            <div className=" absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
-              <p className="text-sm text-white font-semibold">2</p>
-            </div>
+            {cartItems && cartItems.length > 0 && (
+              <div className=" absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
+                <p className="text-sm text-white font-semibold">{cartItems.length}</p>
+              </div>
+            )}
         </Link>
         <div className="relative">
           <motion.img whileTap={{scale: 0.6}} 

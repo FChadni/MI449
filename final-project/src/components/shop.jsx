@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Product from "./product";
-import Cart from "./cart";
 import { useStateValue } from '../context/StateProvider';
-import { getAllShopProducts } from '../utils/firebaseFunction';
-import { actionType } from '../context/reducer';
-import { Link } from "react-router-dom";
+import PublicApi from './publicApi';
 
 
 const Shop = () => {
   const [{ shopProducts }, dispatch] = useStateValue();
-
   return (
     <div className="w-full h-auto flex flex-col items-center">
       <Product data={shopProducts}/>
-      <Cart/>
+      <PublicApi/>
     </div>
   )
 }

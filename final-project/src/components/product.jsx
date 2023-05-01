@@ -1,40 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useStateValue } from '../context/StateProvider';
-import { getAllShopProducts } from '../utils/firebaseFunction';
 import { actionType } from '../context/reducer';
 import { motion } from 'framer-motion';
-import { Link } from "react-router-dom";
 
 
 const Product = ({ data }) => {
   console.log("data", data);
 
+  const [{cartItems}, dispatch] = useStateValue();
+  const [items, setItems] = useState([]);
+
+  const addToCart = useCallback(() => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  }, [dispatch, items]);
+
+  useEffect(() => { 
+    addToCart();
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)); 
+  }, [cartItems, addToCart]);
+
   return (
     <div>
-      <div className={`w-full flex items-center gap-3  my-12 scroll-smooth`}>
+      <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 py-20'>
       {data && data.length > 0 ? (
         data.map((item) => (
-          <div key={item?.id} className="w-275 h-[175px] min-w-[275px] md:w-300 md:min-w-[300px]  bg-cardOverlay rounded-lg py-2 px-4  my-12 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-evenly relative">
+          <div key={item?.id} className="w-80 h-auto gap-6 rounded-2xl border-2 border-gray-300 pb-4">
             
             <div className="w-full flex items-center justify-between">
-              <motion.div className="w-40 h-40 -mt-8 drop-shadow-2xl" whileHover={{ scale: 1.2 }}>
+              <motion.div whileHover={{ scale: 1.2 }}>
                 <img src={item?.imageURL} alt="" className="w-full h-full object-contain"/>
-              </motion.div>
-              <motion.div
-                whileTap={{ scale: 0.75 }}
-                className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
-              >
               </motion.div>
             </div>
 
-            <div className="w-full flex flex-col items-end justify-end -mt-8">
-              <p className="text-textColor font-semibold text-base md:text-lg">
-                {item?.productTitle}
-              </p>
-              <div className="flex items-center gap-8">
-                <p className="text-lg text-headingColor font-semibold">
-                  <span className="text-sm text-red-500">$</span> {item?.price}
-                </p>
+            <p className="text-textColor text-base md:text-lg py-1 px-2">{item?.productTitle}</p>
+
+            <div className="w-full flex flex-row justify-between py-1 px-2">
+              <p className="text-lg text-headingColor font-semibold"><span className="text-lg">$</span> {item?.price}</p>
+              <div>
+                <motion.div whileTap={{ scale: 0.75 }}
+                  className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center cursor-pointer hover:shadow-md text-white text-2xl"
+                  onClick={() => setItems([...cartItems, item])}>
+                    +
+                </motion.div>
               </div>
             </div>
           </div>
