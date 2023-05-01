@@ -97,7 +97,7 @@ const Nav = () => {
                     <p 
                       className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out"
                       onClick={ () => setIsPopup(false) } >
-                      New Item <BsPlus/>
+                      Add Item <BsPlus/>
                     </p>
                   </Link>
                 )}
